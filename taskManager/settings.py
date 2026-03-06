@@ -34,6 +34,18 @@ ALLOWED_HOSTS = [
     '*'  # fallback for any other host
 ]
 
+# CSRF settings for production
+CSRF_TRUSTED_ORIGINS = [
+    'https://taskmanager-projectfor-intershipapply-production.up.railway.app',
+    'http://taskmanager-projectfor-intershipapply-production.up.railway.app',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SECURE = True
+
 
 # Application definition
 
