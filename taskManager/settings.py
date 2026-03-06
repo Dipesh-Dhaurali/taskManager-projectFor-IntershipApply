@@ -27,7 +27,12 @@ SECRET_KEY = "django-insecure-%t^&f2u_wtk=tr7_!gt_ksnc7_+89wqat(s0z02pmfon#adow3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    '127.0.0.1',  # local dev
+    'localhost',  # local dev
+    'taskmanager-projectfor-intershipapply-production.up.railway.app',  # Railway production
+    '*'  # fallback for any other host
+]
 
 
 # Application definition
