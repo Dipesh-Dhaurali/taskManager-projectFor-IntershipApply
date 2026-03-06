@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TaskMaster - Professional Task Management System
 
 TaskMaster is a full-stack, professional-grade task management application built with a modern API-first architecture. It features a robust Django REST Framework (DRF) backend, secure JWT authentication, and a sleek, dynamic frontend.
@@ -110,3 +111,7 @@ Instead of traditional page reloads, the application uses Vanilla JS to:
 - `home/`: Authentication, landing pages, and base templates.
 - `task/`: Task models, dashboard, and the core API logic.
 - `taskManager/`: Project configuration and settings.
+=======
+# taskManager-projectFor-IntershipApply
+TaskMaster is a full-stack task management system built with Django REST Framework, MySQL, and JWT authentication, featuring an API-first architecture, dynamic JavaScript frontend, secure user access, and real-time productivity dashboard.
+>>>>>>> fa16110972cb4cdea2648398b445b475e0d9fbbf
