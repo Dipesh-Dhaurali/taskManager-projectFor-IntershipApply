@@ -1,0 +1,82 @@
+{% extends 'home/base.html' %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #f8f9fc 0%, #e2e8f0 100%);
+        border-radius: 2rem;
+        margin-bottom: 3rem;
+    }
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 12px rgba(78, 115, 223, 0.3);
+    }
+    .stat-card {
+        border-left: 4px solid var(--primary-color);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <span class="badge bg-primary-soft text-primary mb-3 px-3 py-2 rounded-pill fw-bold" style="background-color: rgba(78, 115, 223, 0.1);">V2.0 PRO RELEASE</span>
+                <h1 class="display-3 fw-bold mb-4" style="color: #2d3748; letter-spacing: -1px;">Master Your Workflow with <span class="text-primary">Precision</span></h1>
+                <p class="lead mb-5 text-secondary px-md-5">A professional-grade task management ecosystem powered by Django REST Framework. Secure, private, and exceptionally fast.</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="{% url 'register_page' %}" class="btn btn-primary btn-lg px-5 py-3 fw-bold">Start Your Journey</a>
+                    <a href="/admin/" class="btn btn-outline-dark btn-lg px-5 py-3 fw-bold">Admin Portal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 py-5">
+    <div class="col-md-4">
+        <div class="card h-100 p-4 border-0">
+            <div class="card-body">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+                <h4 class="fw-bold mb-3">API-First Architecture</h4>
+                <p class="text-secondary">Leveraging Django REST Framework for a decoupled, scalable, and modern backend architecture.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 border-0">
+            <div class="card-body">
+                <div class="feature-icon" style="background: var(--success-color); box-shadow: 0 4px 12px rgba(28, 200, 138, 0.3);">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <h4 class="fw-bold mb-3">JWT Authentication</h4>
+                <p class="text-secondary">Enterprise-standard security using JSON Web Tokens for stateless, secure session management.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 border-0">
+            <div class="card-body">
+                <div class="feature-icon" style="background: var(--info-color); box-shadow: 0 4px 12px rgba(54, 185, 204, 0.3);">
+                    <i class="bi bi-graph-up"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Advanced Analytics</h4>
+                <p class="text-secondary">Gain deep insights into your productivity with real-time statistics and task completion metrics.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

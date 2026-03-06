@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light mb-4">
+    <div class="container">
+        {% if page_type == 'dashboard' %}
+            <a class="navbar-brand" href="{% url 'dashboard' %}">TaskMaster</a>
+        {% else %}
+            <a class="navbar-brand" href="{% url 'landing' %}">TaskMaster</a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto d-flex align-items-center" id="nav-links">
+                {% if page_type == 'landing' %}
+                    <!-- Landing Page View -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login_page' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register_page' %}">Register</a></li>
+                    <li class="nav-item"><a class="btn btn-sm btn-outline-primary ms-3" href="/admin/">Admin Panel</a></li>
+                {% elif page_type == 'dashboard' %}
+                    <!-- Dashboard/App View -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'add_task_page' %}">Add Task</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+                {% else %}
+                    <!-- Default (Auth pages like Login/Register) -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
+                    <li class="nav-item"><a class="btn btn-sm btn-outline-primary ms-3" href="/admin/">Admin Panel</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

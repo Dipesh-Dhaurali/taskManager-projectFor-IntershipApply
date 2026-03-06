@@ -1,0 +1,89 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4 mb-4">
+            <div class="d-flex align-items-center mb-4">
+                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                    <i class="bi bi-plus-lg"></i>
+                </div>
+                <h3 class="card-title fw-bold mb-0">Create New Task</h3>
+            </div>
+            <form id="task-form">
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-bold">Task Title</label>
+                    <input type="text" class="form-control form-control-lg" id="title" required placeholder="e.g., Finalize project report">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label fw-bold">Description</label>
+                    <textarea class="form-control" id="description" rows="4" placeholder="Enter detailed task description..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="status" class="form-label fw-bold">Initial Status</label>
+                    <select class="form-select" id="status">
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" id="submit-btn" class="btn btn-primary btn-lg fw-bold">
+                        Create Task
+                    </button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-lg">Back to Dashboard</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const taskForm = document.getElementById('task-form');
+    const titleInput = document.getElementById('title');
+    const descInput = document.getElementById('description');
+    const statusInput = document.getElementById('status');
+
+    // Authentication Guard
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        window.location.href = "{% url 'login_page' %}";
+    }
+
+    const getAuthHeaders = () => ({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        'X-CSRFToken': '{{ csrf_token }}'
+    });
+
+    taskForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const taskData = {
+            title: titleInput.value,
+            description: descInput.value,
+            status: statusInput.value
+        };
+
+        try {
+            const response = await fetch('/task/api/tasks/', {
+                method: 'POST',
+                headers: getAuthHeaders(),
+                body: JSON.stringify(taskData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                showNotification('Task created successfully! Redirecting...');
+                setTimeout(() => window.location.href = "{% url 'dashboard' %}", 1500);
+            } else {
+                showNotification(Object.values(result).flat().join(', '), 'error');
+            }
+        } catch (error) {
+            console.error('Error saving task:', error);
+            showNotification('Failed to save task.', 'error');
+        }
+    });
+</script>
+{% endblock %}
